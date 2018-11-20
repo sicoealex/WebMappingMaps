@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'api/GeoLocation';
+        var uriPolygon = 'api/GetPolygonLocation';
+
+        var map;
+        function initMap() {
+            var abrud = { lat: 46.37557, lng: 23.101916 };
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: abrud,
+                zoom: 13
+            });
+
+            //LINES
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri)
+                .done(function (data) {
+                    locations = data;
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        console.log("test");
+
+                        var flightPlanCoordinates = item.coordinates;
+
+                        var flightPath = new google.maps.Polyline({
+                            path: flightPlanCoordinates,
+                            geodesic: true,
+                            strokeColor: '#FF0000',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        });
+
+                        flightPath.setMap(map);
+
+                    });
+                });
+            });
+
+            //POLYGON
+            $(document).ready(function () {
+                // Send an AJAX request
+                $.getJSON(uriPolygon)
+                    .done(function (data) {
+                        locations = data;
+                        // On success, 'data' contains a list of products.
+                        $.each(data, function (key, item) {
+                            console.log("test");
+
+                            var flightPlanCoordinates = item.coordinates;
+
+                            var color = '#' + Math.random().toString(16).substr(-6);
+                            var bermudaTriangle = new google.maps.Polygon({
+                                paths: flightPlanCoordinates,
+                                strokeColor: color,
+                                strokeOpacity: 0.8,
+                                strokeWeight: 1,
+                                fillColor: color,
+                                   fillOpacity: 0.35
+                                });
+                            bermudaTriangle.setMap(map);
+
+                        });
+                    });
+            });
+
+
+        
+
+            /*var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.MARKER,
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+                },
+                markerOptions: { icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
+                circleOptions: {
+                    fillColor: '#ffff00',
+                    fillOpacity: 1,
+                    strokeWeight: 3,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1
+                }
+            });*/
+
+
+                
+
+                //bermudaTriangle.addListener('click', showArrays);
+
+           /* var flightPlanCoordinates = [
+                { lat: 46.377657133000071, lng: 23.101307871000074 },
+                { lat: 46.37755455000007, lng: 23.101171775000068 },
+                { lat: 46.37751783200008, lng: 23.101115474000039 },
+                { lat: 46.37749046600004, lng: 23.101067714000067 },
+                { lat: 46.377463135000028, lng: 23.101013558000034 },
+                { lat: 46.377325083000073, lng: 23.100717309000061 },
+                { lat: 46.37728323400006, lng: 23.10063419100004 },
+                { lat: 46.377260471000056, lng: 23.100595698000063 },
+                { lat: 46.377226310000026, lng: 23.100544912000032 },
+                { lat: 46.377142636000031, lng: 23.100429378000058 },
+            ];*/
+
+
+            /*var testCoordinates = [
+                { lat: 46.28993, lng: 23.06697 },
+                { lat: 46.29275, lng: 23.06799 },
+                { lat: 46.29658, lng: 23.09699 },
+                { lat: 46.28871, lng: 23.07699 }
+            ];*/
+
+            /*var flightPath = new google.maps.Polyline({
+                path: flightPlanCoordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });*/
+
+            /*var bermudaTriangle = new google.maps.Polygon({
+                paths: flightPlanCoordinates,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 3,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35
+            });*/
+
+            /*var testPoligon2 = new google.maps.Polygon({
+                paths: testCoordinates,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 3,
+                fillColor: '#FG0000',
+                fillOpacity: 0.35
+            });*/
+
+            var contentString = 'Terenul are o suprafata de 100 MP, si este in proprietatea domnului Test Test. Poate fi folost pentru cultivarea porumbului.';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            /*var marker = new google.maps.Marker({
+                position: abrud,
+                map: map,
+                title: 'Teren Test Test'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });*/
+
+
+
+            
+            //testPoligon2.setMap(map);
+            // Add a listener for the click event.
+            
+            //testPoligon2.addListener('click', showTest);
+
+
+            infoWindow = new google.maps.InfoWindow;
+
+
+            //drawingManager.setMap(map);
+        }
+
+        function showTest(event) {
+            var vertices = this.getPath();
+
+            var contentString = '<b>Teren de test 2. Folosit pentru al doilea Test</b><br>' +
+                'Clicked location: <br>' + event.latLng.lat() + ',' + event.latLng.lng() +
+                '<br>';
+            infoWindow.setContent(contentString);
+            infoWindow.setPosition(event.latLng);
+
+            infoWindow.open(map);
+        }
+
+        function showArrays(event) {
+            // Since this polygon has only one path, we can call getPath() to return the
+            // MVCArray of LatLngs.
+            var vertices = this.getPath();
+
+            var contentString = '<b>Teren de test. Folosit pentru Test</b><br>' +
+                'Clicked location: <br>' + event.latLng.lat() + ',' + event.latLng.lng() +
+                '<br>';
+
+            // Iterate over the vertices.
+            for (var i = 0; i < vertices.getLength(); i++) {
+                var xy = vertices.getAt(i);
+                contentString += '<br>' + 'Coordinate ' + i + ':<br>' + xy.lat() + ',' +
+                    xy.lng();
+            }
+
+            // Replace the info window's content and position.
+            infoWindow.setContent(contentString);
+            infoWindow.setPosition(event.latLng);
+
+            infoWindow.open(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdmyTi8fgyztKU7BCltfiE08p6zVWh1Bo&libraries=drawing&callback=initMap"
+            async defer></script>
+</body>
+</html>
