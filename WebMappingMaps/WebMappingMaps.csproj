@@ -87,8 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="controller.js" />
+    <Content Include="FermeTransavia.html" />
     <Content Include="Global.asax" />
     <Content Include="HTMLGoogleMap.html" />
+    <Content Include="TransaviaMap.js" />
     <Content Include="Web.config" />
     <Content Include="WebTest.aspx" />
   </ItemGroup>
@@ -96,12 +98,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\GetPolygonLocationController.cs" />
-    <Compile Include="GeoLocationDB.cs" />
+    <Compile Include="DBInteraction\GeoLocationDB.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\LocationCoordinates.cs" />
     <Compile Include="Model\LocationPolygonCoordinates.cs" />
+    <Compile Include="Model\TransaviaFerma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\SpatialGeo.cs" />
     <Compile Include="WebTest.aspx.cs">
