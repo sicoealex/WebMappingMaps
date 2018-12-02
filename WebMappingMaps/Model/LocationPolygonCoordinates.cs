@@ -10,7 +10,8 @@ namespace WebMappingMaps.Model
         public string locationid { get; set; }
         public List<List<SpatialGeo>> coordinates { get; set; }
         public string description { get; set; }
-        public Object metadata { get; set; }
+        public TransaviaFerma metadata { get; set; }
+        public List<String> mapLegend {get; set;}
 
         public LocationPolygonCoordinates() { }
 
@@ -20,5 +21,23 @@ namespace WebMappingMaps.Model
             this.coordinates = coordinates;
             this.description = description;
         }
+
+        public LocationPolygonCoordinates(string locationid, List<List<SpatialGeo>> coordinates, string description, TransaviaFerma metadata)
+        {
+            this.locationid = locationid;
+            this.coordinates = coordinates;
+            this.description = description;
+            this.metadata = metadata;
+        }
+
+        public LocationPolygonCoordinates(string locationid, List<List<SpatialGeo>> coordinates, string description, TransaviaFerma metadata, List<String> legend)
+        {
+            this.locationid = locationid;
+            this.coordinates = coordinates;
+            this.description = description;
+            this.metadata = metadata;
+            this.mapLegend = legend;
+        }
+
     }
 }

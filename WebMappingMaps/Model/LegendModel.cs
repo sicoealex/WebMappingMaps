@@ -5,18 +5,17 @@ using System.Web;
 
 namespace WebMappingMaps.Model
 {
-    public class TransaviaFerma
+    public class LegendModel
     {
+
         public string tipCultura { get; set; }
-        public string suprafata { get; set; }
         public string collorMap { get; set; }
 
-        public TransaviaFerma() { }
+        public LegendModel() { }
 
-        public TransaviaFerma(string tipCultura, string suprafata, string collorMap)
+        public LegendModel(string tipCultura, string collorMap)
         {
             this.tipCultura = tipCultura;
-            this.suprafata = suprafata;
             this.collorMap = collorMap;
         }
     }

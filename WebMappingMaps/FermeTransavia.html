@@ -7,6 +7,35 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="TransaviaMap.js"></script>
     <meta charset="utf-8" />
+
+    <style>
+        #legend {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            padding: 10px;
+            margin: 10px;
+            border: 3px solid #000;
+        }
+
+        .my-legend ul.legend-labels li span {
+            display: block;
+            float: left;
+            height: 16px;
+            width: 30px;
+            margin-right: 5px;
+            margin-left: 0;
+            border: 1px solid #999;
+        }
+
+        .my-legend .legend-scale ul li {
+            font-size: 80%;
+            list-style: none;
+            margin-left: 0;
+            line-height: 18px;
+            margin-bottom: 2px;
+        }
+    </style>
+
     <title>Ferme Transavia</title>
 </head>
 <body>
@@ -15,6 +44,19 @@
     </div>
     <div id="map" style="width:100%;height:650px;"></div>
     
+
+    <div class='my-legend' id="legend">
+        <div class='legend-title'>Map Legend:</div>
+        <div class='legend-scale'>
+            <ul class='legend-labels' id="legss">
+                
+            </ul>
+        </div>
+
+    </div>
+
+
+    <script>initializeMap()</script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdmyTi8fgyztKU7BCltfiE08p6zVWh1Bo&libraries=drawing&callback=initMap" async defer></script>
 </body>
 </html>

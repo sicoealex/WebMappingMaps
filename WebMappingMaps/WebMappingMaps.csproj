@@ -98,10 +98,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\GetPolygonLocationController.cs" />
+    <Compile Include="DBInteraction\DBTransaviaF11.cs" />
     <Compile Include="DBInteraction\GeoLocationDB.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\LegendModel.cs" />
     <Compile Include="Model\LocationCoordinates.cs" />
     <Compile Include="Model\LocationPolygonCoordinates.cs" />
     <Compile Include="Model\TransaviaFerma.cs" />
@@ -117,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
